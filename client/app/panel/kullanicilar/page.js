@@ -8,7 +8,7 @@ const page = () => {
   // API'den kullanıcı verilerini çekiyoruz.
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/users/getir");
+      const res = await fetch("http://localhost:4003/api/users/getir");
       if (!res.ok) {
         throw new Error("Kullanıcı verileri alınırken bir hata oluştu");
       }
@@ -28,7 +28,7 @@ const page = () => {
   const handleDelete = async (id) => {
     if (!confirm("Kullanıcıyı silmek istediğinize emin misiniz?")) return;
     try {
-      const res = await fetch(`http://localhost:3001/api/users/sil/${id}`, {
+      const res = await fetch(`http://localhost:4003/api/users/sil/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) {
