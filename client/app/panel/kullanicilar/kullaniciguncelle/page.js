@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const page = () => {
+function PageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const userId = searchParams.get("id");
@@ -156,12 +156,28 @@ const page = () => {
             placeholder="Yeni şifre girin (boş bırakılırsa değişmez)"
           />
         </div>
-        <button type="submit" style={{ padding: "0.75rem", border: "none", borderRadius: "5px", backgroundColor: "#0070f3", color: "#fff", cursor: "pointer" }}>
+        <button
+          type="submit"
+          style={{
+            padding: "0.75rem",
+            border: "none",
+            borderRadius: "5px",
+            backgroundColor: "#0070f3",
+            color: "#fff",
+            cursor: "pointer"
+          }}
+        >
           Güncelle
         </button>
       </form>
     </div>
   );
-};
+}
 
-export default page;
+export default function PageWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent />
+    </Suspense>
+  );
+}
