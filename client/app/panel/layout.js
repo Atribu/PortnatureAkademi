@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const PanelLayout = ({ children }) => {
   const router = useRouter();
   const [departmentsOpen, setDepartmentsOpen] = useState(false);
-  const [usersOpen, setUsersOpen] = useState(false); // Kullanıcılar bölümü için state
+  const [usersOpen, setUsersOpen] = useState(false);
 
   const toggleDepartments = () => {
     setDepartmentsOpen(!departmentsOpen);
@@ -19,12 +19,11 @@ const PanelLayout = ({ children }) => {
   const handleLogout = async () => {
     try {
       const res = await fetch("http://localhost:4003/api/LoginRegister/cikisyap", {
-        method: "GET"
+        method: "GET",
       });
       if (!res.ok) {
         throw new Error("Çıkış yapılamadı");
       }
-      // Çıkış başarılı ise ana sayfaya yönlendiriyoruz.
       router.push("/");
     } catch (err) {
       console.error(err);
@@ -47,6 +46,23 @@ const PanelLayout = ({ children }) => {
     "Kalite",
     "Ön Büro",
   ];
+
+  // Departman isimlerini URL uyumlu slug'lara dönüştüren mapping
+  const departmentSlugs = {
+    "İnsan Kaynakları": "insankaynaklari",
+    "Satış & Pazarlama": "satispazarlama",
+    "Bilgi Sistemleri": "bilgisistemleri",
+    "Kat Hizmetleri": "kathizmetleri",
+    "Güvenlik": "guvenlik",
+    "Teknik Servis": "teknikservis",
+    "Satınalma": "satinalma",
+    "Muhasebe": "muhasebe",
+    "Mutfak": "mutfak",
+    "Yiyecek & İçecek": "yiyecekicecek",
+    "Animasyon": "animasyon",
+    "Kalite": "kalite",
+    "Ön Büro": "onburo",
+  };
 
   return (
     <div>
@@ -94,7 +110,7 @@ const PanelLayout = ({ children }) => {
       <div
         style={{
           position: "fixed",
-          top: "60px", // Header yüksekliği kadar aşağıda
+          top: "60px",
           left: 0,
           width: "250px",
           height: "calc(100vh - 60px)",
@@ -110,7 +126,7 @@ const PanelLayout = ({ children }) => {
               Dashboard
             </a>
           </li>
-          {/* Açılır Kullanıcılar Bölümü */}
+          {/* Kullanıcılar Bölümü */}
           <li style={{ marginBottom: "1rem" }}>
             <div
               style={{
@@ -130,14 +146,17 @@ const PanelLayout = ({ children }) => {
                   </Link>
                 </li>
                 <li style={{ marginBottom: "0.3rem" }}>
-                  <Link href="/panel/kullanicilar/kayitol" style={{ color: "#fff", textDecoration: "none" }}>
+                  <Link
+                    href="/panel/kullanicilar/kayitol"
+                    style={{ color: "#fff", textDecoration: "none" }}
+                  >
                     Yeni Kullanıcı Ekle
                   </Link>
                 </li>
               </ul>
             )}
           </li>
-          {/* Açılır Departmanlar Bölümü */}
+          {/* Departmanlar Bölümü */}
           <li style={{ marginBottom: "1rem" }}>
             <div
               style={{
@@ -153,17 +172,12 @@ const PanelLayout = ({ children }) => {
               <ul style={{ listStyle: "none", paddingLeft: "1rem", fontSize: "0.9rem" }}>
                 {departments.map((dept, index) => (
                   <li key={index} style={{ marginBottom: "0.3rem" }}>
-                    <a
-                      href="#"
-                      style={{
-                        color: "#fff",
-                        textDecoration: "none",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => console.log(`Departman seçildi: ${dept}`)}
+                    <Link
+                      href={`/panel/${departmentSlugs[dept]}`}
+                      style={{ color: "#fff", textDecoration: "none", cursor: "pointer" }}
                     >
                       {dept}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -175,8 +189,8 @@ const PanelLayout = ({ children }) => {
       {/* Ana İçerik */}
       <div
         style={{
-          marginLeft: "250px", // Sidebar genişliği kadar boşluk
-          marginTop: "60px", // Header yüksekliği kadar boşluk
+          marginLeft: "250px",
+          marginTop: "60px",
           padding: "2rem",
           backgroundColor: "#f4f4f4",
           minHeight: "calc(100vh - 60px)",

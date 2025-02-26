@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import usersRoute from "./routes/users.js"
 import LoginRegister from "./routes/LoginRegister.js"
+import videoRoutes from "./routes/video.js";
 
 // .env dosyasındaki değişkenleri yükle
 dotenv.config();
@@ -28,6 +29,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", usersRoute )
 app.use("/api/LoginRegister", LoginRegister)
+app.use("/api/video", videoRoutes);
+app.use("/uploads", express.static("uploads"));
 
 app.listen(4003, () => {
     console.log("Port Açıldı");
