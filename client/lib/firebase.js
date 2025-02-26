@@ -34,4 +34,4 @@ const storage = getStorage(app);
 //   analytics = getAnalytics(app);
 // }
 
-export { db, auth, storage, analytics };
+export { db, auth, storage, };
