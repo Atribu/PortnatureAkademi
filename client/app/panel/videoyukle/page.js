@@ -57,7 +57,7 @@ const page = () => {
       async () => {
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         try {
-          const res = await fetch("http://localhost:4003/api/video/upload", {
+          const res = await fetch("http://localhost:5003/api/video/upload", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

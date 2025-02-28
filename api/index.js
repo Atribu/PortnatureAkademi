@@ -32,6 +32,6 @@ app.use("/api/LoginRegister", LoginRegister)
 app.use("/api/video", videoRoutes);
 app.use("/uploads", express.static("uploads"));
 
-app.listen(4003, () => {
+app.listen(5003, () => {
     console.log("Port Açıldı");
 });

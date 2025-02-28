@@ -18,7 +18,7 @@ const PanelLayout = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("http://localhost:4003/api/LoginRegister/cikisyap", {
+      const res = await fetch("http://localhost:5003/api/LoginRegister/cikisyap", {
         method: "GET",
       });
       if (!res.ok) {

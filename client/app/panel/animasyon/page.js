@@ -18,7 +18,7 @@ const Page = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("http://localhost:4003/api/video/list?department=Animasyon");
+        const res = await fetch("http://localhost:5003/api/video/list?department=Animasyon");
         if (!res.ok) {
           throw new Error("Videolar alınamadı");
         }

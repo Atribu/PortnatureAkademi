@@ -17,7 +17,7 @@ export default function Home() {
     try {
       // Gerçek uygulamada API isteği yapılır.
       // Örneğin:
-      // const res = await fetch("http://localhost:4003/api/LoginRegister/girisyap", {
+      // const res = await fetch("http://localhost:5003/api/LoginRegister/girisyap", {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify({ email, password }),

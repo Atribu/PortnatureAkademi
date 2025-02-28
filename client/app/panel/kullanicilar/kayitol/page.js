@@ -43,7 +43,7 @@ export default function SignUpPage() {
 
     try {
       // API isteği: Kayıt ol endpoint'i
-      const res = await fetch("http://localhost:4003/api/LoginRegister/kayitol", {
+      const res = await fetch("http://localhost:5003/api/LoginRegister/kayitol", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

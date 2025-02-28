@@ -39,7 +39,7 @@ function PageContent() {
     if (userId) {
       async function fetchUser() {
         try {
-          const res = await fetch(`http://localhost:4003/api/users/getir/${userId}`);
+          const res = await fetch(`http://localhost:5003/api/users/getir/${userId}`);
           if (!res.ok) {
             throw new Error("Kullanıcı verileri alınırken bir hata oluştu");
           }
@@ -64,7 +64,7 @@ function PageContent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:4003/api/users/guncelle/${userId}`, {
+      const res = await fetch(`http://localhost:5003/api/users/guncelle/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
